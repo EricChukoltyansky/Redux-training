@@ -8,26 +8,15 @@ import cartItems from "./cart-items";
 
 // store - stores data, think of state
 // reducer - function that usec to update state
+import { DECREASE, INCREASE, RESET } from "./actions";
+
+import reducer from "./reducer";
 
 import { createStore } from "redux";
 // initial store
 const initialStore = {
   count: 0,
 };
-
-function reducer(state, action) {
-  console.log({ state, action });
-  if (action.type === "DECREASE") {
-    return { count: state.count - 1 };
-  }
-  if (action.type === "INCREASE") {
-    return { count: state.count + 1 };
-  }
-  if (action.type === "RESET") {
-    return { count: 0 };
-  }
-  return state;
-}
 
 const store = createStore(reducer, initialStore);
 store.dispatch({ type: "DECREASE" });
