@@ -12,17 +12,27 @@ import cartItems from "./cart-items";
 import { createStore } from "redux";
 // initial store
 const initialStore = {
-  count: 50,
+  count: 0,
 };
 
 function reducer(state, action) {
   console.log({ state, action });
-  if(action.type === 'DECREASE')
+  if (action.type === "DECREASE") {
+    return { count: state.count - 1 };
+  }
+  if (action.type === "INCREASE") {
+    return { count: state.count + 1 };
+  }
+  if (action.type === "RESET") {
+    return { count: 0 };
+  }
   return state;
 }
 
 const store = createStore(reducer, initialStore);
 store.dispatch({ type: "DECREASE" });
+store.dispatch({ type: "INCREASE" });
+store.dispatch({ type: "RESET" });
 console.log("get store", store.getState());
 
 function App() {
